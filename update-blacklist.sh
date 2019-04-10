@@ -105,7 +105,8 @@ swap $IPSET_BLACKLIST_NAME $IPSET_TMP_BLACKLIST_NAME
 destroy $IPSET_TMP_BLACKLIST_NAME
 EOF
 
-ipset -file  "$IP_BLACKLIST_RESTORE" restore
+###ipset -file  "$IP_BLACKLIST_RESTORE" restore
+csf -r
 
 if [[ ${VERBOSE:-no} == yes ]]; then
   echo
