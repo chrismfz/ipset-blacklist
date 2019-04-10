@@ -21,6 +21,7 @@ Modified version to work with cPanel servers with CSF
 3. chmod +x /etc/ipset-blacklist/update-blacklist.sh
 4. wget -O /etc/ipset-blacklist/ipset-blacklist.conf https://raw.githubusercontent.com/chrismfz/ipset-blacklist/master/ipset-blacklist.conf
 5. wget -O /etc/cron.daily/ipset-backlist-daily.sh https://raw.githubusercontent.com/chrismfz/ipset-blacklist/master/ipset-backlist-daily.sh
+
 chmod 755 /etc/cron.daily/ipset-backlist-daily.sh
 
 Modify ipset-blacklist.conf according to your needs. Per default, the blacklisted IP addresses will be saved to /etc/ipset-blacklist/ip-blacklist.restore
