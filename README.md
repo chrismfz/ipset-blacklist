@@ -20,10 +20,13 @@ Modified version to work with cPanel servers with CSF
 2. wget -O /etc/ipset-blacklist/update-blacklist.sh https://raw.githubusercontent.com/chrismfz/ipset-blacklist/master/update-blacklist.sh
 3. chmod +x /etc/ipset-blacklist/update-blacklist.sh
 4. wget -O /etc/ipset-blacklist/ipset-blacklist.conf https://raw.githubusercontent.com/chrismfz/ipset-blacklist/master/ipset-blacklist.conf
-2. Modify ipset-blacklist.conf according to your needs. Per default, the blacklisted IP addresses will be saved to /etc/ipset-blacklist/ip-blacklist.restore
-3. yum install ipset
-4. Create the ipset blacklist and insert it into your iptables input filter (see below). After proper testing, make sure to persist it in your firewall script or similar or the rules will be lost after the next reboot.
-5. Auto-update the blacklist using a cron job
+5. wget -O /etc/cron.daily/ipset-backlist-daily.sh https://raw.githubusercontent.com/chrismfz/ipset-blacklist/master/ipset-backlist-daily.sh
+chmod 755 /etc/cron.daily/ipset-backlist-daily.sh
+
+Modify ipset-blacklist.conf according to your needs. Per default, the blacklisted IP addresses will be saved to /etc/ipset-blacklist/ip-blacklist.restore
+yum install ipset
+Create the ipset blacklist and insert it into your iptables input filter (see below). After proper testing, make sure to persist it in your firewall script or similar or the rules will be lost after the next reboot.
+
 
 ## First run, create the list
 to generate the /etc/ipset-blacklist/ip-blacklist.restore
