@@ -1,10 +1,9 @@
 ipset-blacklist
 ===============
 
-A Bash shell script which uses ipset and iptables to ban a large number of IP addresses published in IP blacklists. ipset uses a hashtable to store/fetch IP addresses and thus the IP lookup is a lot (!) faster than thousands of sequentially parsed iptables ban rules. ~~However, the limit of an ipset list is 2^16 entries.~~
+A Bash shell script which uses ipset and iptables to ban a large number of IP addresses published in IP blacklists. ipset uses a hashtable to store/fetch IP addresses and thus the IP lookup is a lot (!) faster than thousands of sequentially parsed iptables ban rules. 
 
-The ipset command doesn't work under OpenVZ. It works fine on dedicated and fully virtualized servers like KVM though.
-
+Modified version to work with cPanel servers with CSF
 ## What's new
 - 10/17/2018: Added support for CIDR aggregation if iprange command is available
 - 10/17/2018: Merged Shellcheck PR from [@extremeshok](https://github.com/extremeshok)
@@ -17,11 +16,12 @@ The ipset command doesn't work under OpenVZ. It works fine on dedicated and full
 - 10/22/2015: Changed the documentation, the script should be put in /usr/local/sbin not /usr/local/bin
 
 ## Quick start for Debian/Ubuntu based installations
-1. wget -O /usr/local/sbin/update-blacklist.sh https://raw.githubusercontent.com/trick77/ipset-blacklist/master/update-blacklist.sh
-2. chmod +x /usr/local/sbin/update-blacklist.sh
-2. mkdir -p /etc/ipset-blacklist ; wget -O /etc/ipset-blacklist/ipset-blacklist.conf https://raw.githubusercontent.com/trick77/ipset-blacklist/master/ipset-blacklist.conf
+1. mkdir -p /etc/ipset-blacklist/
+2. wget -O /etc/ipset-blacklist/update-blacklist.sh https://raw.githubusercontent.com/chrismfz/ipset-blacklist/master/update-blacklist.sh
+3. chmod +x /etc/ipset-blacklist/update-blacklist.sh
+4. wget -O /etc/ipset-blacklist/ipset-blacklist.conf https://raw.githubusercontent.com/chrismfz/ipset-blacklist/master/ipset-blacklist.conf
 2. Modify ipset-blacklist.conf according to your needs. Per default, the blacklisted IP addresses will be saved to /etc/ipset-blacklist/ip-blacklist.restore
-3. apt-get install ipset
+3. yum install ipset
 4. Create the ipset blacklist and insert it into your iptables input filter (see below). After proper testing, make sure to persist it in your firewall script or similar or the rules will be lost after the next reboot.
 5. Auto-update the blacklist using a cron job
 
