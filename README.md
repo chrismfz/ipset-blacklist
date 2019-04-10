@@ -1,10 +1,12 @@
 ipset-blacklist
 ===============
-
+Thanks to trick77: https://github.com/trick77/ipset-blacklist 
 A Bash shell script which uses ipset and iptables to ban a large number of IP addresses published in IP blacklists. ipset uses a hashtable to store/fetch IP addresses and thus the IP lookup is a lot (!) faster than thousands of sequentially parsed iptables ban rules. 
 
-Modified version to work with cPanel servers with CSF
+## Modified version to work with cPanel servers with CSF ##
+
 ## What's new
+- 11/04/2019: Added csf -r option to restart CSF. Several FireHol lists loaded.
 - 10/17/2018: Added support for CIDR aggregation if iprange command is available
 - 10/17/2018: Merged Shellcheck PR from [@extremeshok](https://github.com/extremeshok)
 - 05/10/2018: Added regex filter improvements from [@sbujam](https://github.com/sbujam)
@@ -15,7 +17,7 @@ Modified version to work with cPanel servers with CSF
 - 10/24/2015: Outsourced the entire configuration in it's own configuration file. Makes updating the shell script way easier!
 - 10/22/2015: Changed the documentation, the script should be put in /usr/local/sbin not /usr/local/bin
 
-## Quick start for Debian/Ubuntu based installations
+## Quick start for cPanel
 1. mkdir -p /etc/ipset-blacklist/
 2. wget -O /etc/ipset-blacklist/update-blacklist.sh https://raw.githubusercontent.com/chrismfz/ipset-blacklist/master/update-blacklist.sh
 3. chmod +x /etc/ipset-blacklist/update-blacklist.sh
